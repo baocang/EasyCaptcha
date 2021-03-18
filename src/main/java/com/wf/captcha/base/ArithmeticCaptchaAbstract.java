@@ -1,9 +1,6 @@
 package com.wf.captcha.base;
 
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
-import javax.script.ScriptException;
-
+import com.wf.captcha.utils.Calculator;
 /**
  * 算术验证码抽象类
  * Created by 王帆 on 2019-08-23 上午 10:08.
@@ -36,11 +33,11 @@ public abstract class ArithmeticCaptchaAbstract extends Captcha {
                 }
             }
         }
-        ScriptEngineManager manager = new ScriptEngineManager();
-        ScriptEngine engine = manager.getEngineByName("javascript");
+
+        Calculator calculator = new Calculator();
         try {
-            chars = String.valueOf(engine.eval(sb.toString().replaceAll("x", "*")));
-        } catch (ScriptException e) {
+            chars = calculator.calculate(sb.toString().replaceAll("x", "*")).toString();
+        } catch (ArithmeticException e) {
             e.printStackTrace();
         }
         sb.append("=?");

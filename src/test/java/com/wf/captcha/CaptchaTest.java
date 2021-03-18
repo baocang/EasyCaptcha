@@ -2,7 +2,11 @@ package com.wf.captcha;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.math.BigDecimal;
 
+import com.wf.captcha.utils.Calculator;
+
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -79,6 +83,24 @@ public class CaptchaTest {
     public void testBase64() throws Exception {
         GifCaptcha specCaptcha = new GifCaptcha();
         System.out.println(specCaptcha.toBase64(""));
+    }
+
+    @Test
+    public void testCalculator() throws Exception {
+        Calculator calculator = new Calculator();
+
+        BigDecimal expected;
+        BigDecimal actual;
+
+        expected = BigDecimal.valueOf(2.8);
+        actual = calculator.calculate("2*(3+4)/5");
+
+        Assert.assertEquals("expected 2*(3+4)/5=2.8", expected, actual);
+
+        expected = BigDecimal.valueOf(9);
+        actual = calculator.calculate("2*(4+6/3-5)+7");
+
+        Assert.assertEquals("expected 2*(9+6/3-5)+4=9", expected, actual);
     }
 
 }
