@@ -46,7 +46,7 @@ public class Calculator {
                     }
                     postfixExpression.add(operator);
                 }
-            } else if (isOprator(ch)) {
+            } else if (isOperator(ch)) {
                 // 5 运算符,将该运算符与栈顶运算符进行比较,
                 while (operators.size() > 0) {
                     Character top = operators.peek();
@@ -182,7 +182,7 @@ public class Calculator {
      * @param ch 字符
      * @return 是否为运算符
      */
-    public boolean isOprator(char ch) {
+    public boolean isOperator(char ch) {
         return (ch == '+' || ch == '-' || ch == '*' || ch == '/');
     }
 
